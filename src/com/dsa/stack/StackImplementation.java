@@ -23,9 +23,16 @@ public class StackImplementation {
 		System.out.println(si.peek());
 		System.out.println(si.pop());
 		System.out.println(si.peek());
+		System.out.println(si.isEmpty());
 		System.out.println(si.pop());
 		System.out.println(si.peek());
 		System.out.println(si.pop());
+		System.out.println(si.isEmpty());
+		System.out.println(si.pop());
+		System.out.println(si.isEmpty());
+		System.out.println(si.pop());
+		System.out.println(si.isEmpty());
+		
 
 	}
 
@@ -34,7 +41,10 @@ public class StackImplementation {
 	 * 
 	 * @return
 	 */
-	private int pop() {
+	protected int pop() {
+		if(top == -1) {
+			throw new RuntimeException("Stack is empty");
+		}
 		return top--;
 
 	}
@@ -44,9 +54,18 @@ public class StackImplementation {
 	 * 
 	 * @return
 	 */
-	private int peek() {
+	protected int peek() {
 		return arr[top];
 
+	}
+	
+	/**
+	 * This method will check if stack is empty or not.
+	 * 
+	 * @return
+	 */
+	protected boolean isEmpty() {
+		return top == -1 ? true : false;
 	}
 
 	/**
@@ -54,7 +73,7 @@ public class StackImplementation {
 	 * 
 	 * @param num
 	 */
-	private void push(int num) {
+	protected void push(int num) {
 		if (top < arr.length - 1) {
 			arr[++top] = num;
 		} else {
