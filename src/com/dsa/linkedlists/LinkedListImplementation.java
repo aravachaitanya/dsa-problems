@@ -6,9 +6,11 @@ package com.dsa.linkedlists;
  */
 public class LinkedListImplementation {
 
-	private Node head = null;;
+	protected static Node head = null;;
 
 	private Node tail = null;
+	
+	 Node reverseNode = null;
 
 	private int size = 0;
 
@@ -17,7 +19,7 @@ public class LinkedListImplementation {
 	 * 
 	 * @param val
 	 */
-	private void insertNodeAtStart(int val) {
+	protected void insertNodeAtStart(int val) {
 		Node node = new Node(val);
 
 		if (head == null) {
@@ -144,7 +146,7 @@ public class LinkedListImplementation {
 	/**
 	 * This method is used to display values from linked list.
 	 */
-	private void display() {
+	protected void display() {
 
 		Node temp = head;
 		while (temp != null) {
@@ -173,6 +175,40 @@ public class LinkedListImplementation {
 		}
 		return false;
 	}
+	
+	 public Node reverseList(Node head) {
+	        
+	        Node tempNode = head;
+	        
+	       
+	        return getNextNode(tempNode,reverseNode );
+	        
+	    }
+
+	    private Node getNextNode(Node headNode, Node reverseNode) {
+
+	        
+	        while(headNode != null) {
+	        	reverseNode = insertNodeAtStart(headNode, reverseNode);
+	            headNode = headNode.next;
+	        }
+	        return reverseNode;
+	    }
+
+	    private Node insertNodeAtStart(Node headNode, Node reverseNode) {
+
+	        if(reverseNode == null) {
+	            Node temp = new Node(headNode.value);
+	            reverseNode = temp;
+	           
+	        } else {
+	            Node tempNode = reverseNode;
+	           Node reverseNodeTemp = new Node(headNode.value);
+	           reverseNode = reverseNodeTemp;
+	            reverseNode.next = tempNode;
+	        }
+	        return reverseNode;
+	    }
 
 	/**
 	 * @param args
@@ -184,6 +220,7 @@ public class LinkedListImplementation {
 		linkedListImpl.insertNodeAtStart(20);
 		linkedListImpl.insertNodeAtStart(30);
 		linkedListImpl.insertNodeAtStart(40);
+		linkedListImpl.reverseList(head);
 		linkedListImpl.display();
 		linkedListImpl.insertNodeAtEnd(50);
 		linkedListImpl.display();
